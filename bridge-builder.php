@@ -1,9 +1,11 @@
 <?php
 /**
  * Plugin Name: Bridge Builder
+ * Plugin URI: https://github.com/mziroudi/bridge-builder
  * Description: Visual page builder for WordPress. Drag-and-drop blocks, fast front end, SEO-optimized. Build beautiful WordPress pages visually with AI-generated sections, a built-in design system, and zero coding required
  * Version: 1.4.3
  * Author: Mouad
+ * Author URI: https://github.com/mziroudi
  * Text Domain: bridge-builder
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html

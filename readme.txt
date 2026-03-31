@@ -15,9 +15,9 @@ Bridge Builder is a lightweight WordPress page builder that uses React for both 
 
 **Admin:** Full drag-and-drop editor with live preview, undo/redo, and responsive viewport toggle.
 
-**Front End:** PHP renders semantic HTML for SEO, then a tiny React runtime (~25KB) hydrates the page for SPA-like interactivity and smooth page transitions.
+**Front End:** PHP renders semantic HTML for SEO, then a lightweight React runtime hydrates the page for SPA-like interactivity and smooth page transitions.
 
-**Builder pages = theme replacement:** For any page/post built with Bridge Builder, the theme template is not loaded. The plugin loads its own minimal template (`templates/full-page.php`) via `template_include`, so there is no theme header/footer/main, no CSS hiding, and no duplicate content. See THEME_COMPAT.md.
+**Builder pages = theme replacement:** For any page/post built with Bridge Builder, the theme template is not loaded. The plugin loads its own minimal template (`templates/full-page.php`) via `template_include`, so there is no theme header/footer/main, no CSS hiding, and no duplicate content.
 
 **Theme-friendly front end:** On the front end, only layout CSS (display, flex, gap, padding, margin, dimensions) is output so your theme controls colors, typography, and shadows. Builder content is wrapped in `.bb-content`; themes can target it (e.g. `.bb-content .bb-PostTitle`) to style builder blocks without being overwritten.
 
@@ -41,8 +41,10 @@ Bridge Builder is developed in a split layout:
 - The **WordPress plugin** lives in the `plugin/bridge-builder/` directory (PHP, templates, built JS/CSS).  
 - The **unminified React/TypeScript source and build tooling** live in the `frontend/` directory of the project (not shipped in the plugin folder by default).
 
-The full source code and build steps are documented in the project root `README.md` (including how to build `dist/builder.js` and `dist/runtime.js` from `frontend/src`).  
-When publishing this plugin on WordPress.org, make sure the plugin’s readme there links to the public repository for this project so reviewers and users can inspect the readable source and build configuration.
+Public source code (including unminified React/TypeScript source and build tooling):  
+https://github.com/mziroudi/bridge-builder
+
+Build and packaging steps are documented in `README.md` in that repository, including how `dist/builder.js` and `dist/runtime.js` are produced from `frontend/src`.
 
 == Installation ==
 
@@ -160,7 +162,7 @@ When publishing this plugin on WordPress.org, make sure the plugin’s readme th
 
 = 1.0.17 =
 * Global header/footer overwrite (Elementor-style): block themes get empty header/footer template parts via pre_get_block_file_template so the theme never outputs them; BB outputs its own at wp_body_open/wp_footer.
-* Theme compat: bridge_builder_has_global_header(), bridge_builder_has_global_footer(); THEME_COMPAT.md and add_theme_support( 'bridge-builder-header-footer' ) for classic themes.
+* Theme compat: bridge_builder_has_global_header(), bridge_builder_has_global_footer(), and add_theme_support( 'bridge-builder-header-footer' ) for classic themes.
 
 = 1.0.16 =
 * Fix: duplicate page content — only replace the_content in main query loop and output once per request (static flag).
